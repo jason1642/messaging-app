@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import io from 'socket.io-client';
 import UserInput from './UserInput';
+import MessageDisplay  from './MessageDisplay';
 
 const Container = styled.div`
   display: flex;
-  height: 80vh;
+  height:75vh;
   width: 70%;
   background-color: white;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  padding: 15px;
   flex-direction: column;
 
 `;  
@@ -20,71 +22,50 @@ const Header = styled.div`
 const Main = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: purple;
+  height: 100%;
+  
 `;
 
 
 
-const MessageDisplay = ({ socket }) => {
-  const [chatMessage, setChatMessage] = useState();
-  socket.on('group chat', arg => setChatMessage(arg))
-  return (
-    <div>
-      THIS IS THE CURRENT CHAT
-      {chatMessage}
-    </div>
-  )
-}
+
 
 
 
 const GroupChat = () => {
-
   const [socket, setSocket] = useState(null);
-  const [currentVisibleChat, setCurrentVisibleChat] = useState([]);
 
   useEffect(() => {
-    const newSocket = io(`${window.location.hostname}:5000/`, { transports: ["websocket"], upgrade: false });
+    const newSocket = io(`${window.location.hostname}:8080/`, { transports: ["websocket"] });
     setSocket(newSocket);
-    console.log(socket);
  
     return () => newSocket.close();
   }, []);
 
   useEffect(() => {
+    console.log(socket)
     if (socket !== null) {
       // socket.on('message', console.log('This message is from io'))
-      socket.on('group chat', arg =>  setCurrentVisibleChat(prev => [...prev, arg]))
       socket.on("connect", () => {
         console.log('YOU HAVE BEEN RECONNECTED')
         console.log(socket)
       });
     }
     
-  },[socket])
-  console.log(socket)
+  }, [socket]);
 
-  const sendMessage = (message) => {
-    console.log(socket.id);
-    if (socket) {
-      socket.emit('sent message', message)
-      console.log("IF SOCKET STATEMENT")
-    }
-    console.log(currentVisibleChat)
- 
-  }
   
-  console.log(currentVisibleChat)
+  
   return (<Container>
-    <Header>header</Header>
-    <Main>
-      This is where messages will show up
-     
-      {/* {currentVisibleChat && currentVisibleChat.map(ele => ele)} */}
+    <Header>header </Header>
+    <Main >
+      
       {
-        socket && <MessageDisplay socket={socket}/>
+        socket && <><MessageDisplay socket={socket} />
+      
+          <UserInput socket={socket} /></ >
       }
-      <UserInput sendMessage={sendMessage }/>
-
     </Main>
   </Container> );
 }

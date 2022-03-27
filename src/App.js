@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import MainRoutes from './components/Routes/MainRoutes';
+import AllRoutes from '../src/components/Routes/Container'
+
+
+
 function App() {
   return (
     <div className="App">
       
-    <MainRoutes />
+    <AllRoutes />
 
     </div>
   );

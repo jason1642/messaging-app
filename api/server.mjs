@@ -1,55 +1,35 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { createServer } from "http";
-import { Server } from "socket.io";
-
+import socketRouter from './Routes/socket/socketRoutes.mjs';
+import { runSocketServer } from './socketServer.mjs';
+import connectDatabase from './database.mjs';
+import { userRouter } from './Routes/users.mjs';
+import  authRouter from './Routes/auth.mjs';
+import config from 'config';
 
 const app = express();
-const port = process.env.PORT || 5000;
+
+
 app.use(express.json());
+app.use(cors());
+app.use(socketRouter);
+app.use('/api/user/create', userRouter);
+app.use('/api/user/auth', authRouter);
 
-const httpServer = createServer();
-const io = new Server(httpServer, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
-});
-httpServer.listen(port);
-app.set('socket.io', io)
-app.listen(5050, console.log("listening on port 5050"))
-// io.use(cors());
-io.on('connect', (socket) => {
-  console.log('a user connected3');
-  socket.on('sent message', (arg) => socket.emit('group chat', arg));
-  // socket.send("this is a messag from socket")
+app.listen(5050, console.log("listening on port 5050"));
+
+if (!config.get('PrivateKey')) {
+  console.error('FATAL ERROR: PrivateKey is not defined.');
+  process.exit(1);
+}
 
 
 
-  socket.emit('group chat', 'THIS IS FROM EXPRESS');
-});
-
-app.post('/api/group/', async (req, res) => {
-  console.log(req.body)
-  app.get('socket.io').emit('group chat',req.body.message)
-
-  res.end()
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
+// RUN SOCKET SERVER ./socketServr.mjs - has io instance
+runSocketServer();
+// Connect to mongodb database via mongoose
+connectDatabase();
 
 
 
