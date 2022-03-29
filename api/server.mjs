@@ -7,15 +7,18 @@ import connectDatabase from './database.mjs';
 import { userRouter } from './Routes/users.mjs';
 import  authRouter from './Routes/auth.mjs';
 import config from 'config';
-
+import roomRouter from './Routes/chats/room.mjs';
+import messageRouter from './Routes/chats/message.mjs'
 const app = express();
 
 
 app.use(express.json());
 app.use(cors());
 app.use(socketRouter);
-app.use('/api/user/create', userRouter);
-app.use('/api/user/auth', authRouter);
+app.use('/api/user/', userRouter);
+app.use('/user/auth', authRouter);
+app.use('/api/room', roomRouter);
+app.use('/api/message', messageRouter);
 
 app.listen(5050, console.log("listening on port 5050"));
 

@@ -6,8 +6,12 @@ import config from 'config';
 import jwt from 'jsonwebtoken';
 const userRouter = express.Router();
 
+
+// ========================================
+// ======== REGISTER/CREATE USER ==========
+// ========================================
 // path: '/user/create'
-userRouter.post('/', async (req, res) => {
+userRouter.post('/create', async (req, res) => {
   // First Validate The Request
   console.log("attempting to create a user")
   const { error } = validateUser(req.body);
@@ -31,9 +35,21 @@ userRouter.post('/', async (req, res) => {
     console.log("User created!")
     const token = jwt.sign({ _id: user._id }, config.get('PrivateKey'));
     console.log(token);
-    res.header('x-auth-token', token);
-    res.send(_.pick(user, ['_id', 'username']));
+    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'username']));
   }
 });
+
+
+// Find one user
+userRouter.get('/:id', async (req, res, next) => {
+  if (!req.params.id) res.status(401).send('ID input is empty');
+  const user = await User.findOne({ _id: req.params.id });
+  if (!user) {
+    return res.status(400).send('User doesn\t exist');
+  } else {
+    res.send(_.pick(user, ['username', '_id']));
+}
+
+})
 
 export { userRouter };
