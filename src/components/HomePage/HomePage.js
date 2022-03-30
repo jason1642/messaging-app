@@ -13,10 +13,10 @@ const Container = styled.div`
 `;  
 
 
-const HomePage = () => {
+const HomePage = ({currentUser}) => {
   return (<Container>
     This is the home page
-    <GroupChat />
+    <GroupChat currentUser={currentUser}/>
   </Container> );
 }
  

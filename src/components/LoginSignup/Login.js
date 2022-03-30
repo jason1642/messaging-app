@@ -1,35 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { registerUser } from '../../Services/api-helper.ts';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const navigate = useNavigate;
 
 const Container = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-`;
-const Title = styled.h2`
-
-`;
-const Form = styled.form`
+  flex-direction:column;
+  justify-content: center;
   background-color: grey;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 20px;
-  width: 70%;
-
+`;  
+const Title = styled.div`
+  font-size: 36px;
+  /* margin: 20px 0; */
 `;
 
+const Form = styled.form`
+  /* border: 1px solid black; */
+  background-color: wheat;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  width: 70%;
+  height: 70%;
+
+`
 const UserInput = styled.input`
+  border: 1px solid black;
   margin: 10px 0;
   padding: 10px;
   width: 80%;
-`;
+`
 
 const SubmitButton = styled.input`
   padding: 12px 20px;
@@ -46,28 +53,33 @@ const SubmitButton = styled.input`
   }
 `;
 
-
-const Main = () => {
-  const navigate = useNavigate();
+const Login = ({handleLogin}) => {
   const [userInput, setUserInput] = useState({
     username: '',
     password: ''
-  });
-  const [success, setSuccess] = useState(false);
+  })
 
   const handleChange = (e) => {
     setUserInput(prev => ({ ...prev, [e.target.name]: e.target.value }))
     
   };
-  
   return (<Container>
-    <Title>Register Here!</Title>  
-    <Form onSubmit={(e) => {
-      e.preventDefault();
-      registerUser(userInput,navigate);
-    }}>
-     
-      <UserInput
+    
+    <Form
+      onSubmit={async e => {
+        e.preventDefault();
+        await handleLogin(userInput, navigate).then(
+          (res) => {
+            console.log('Log in successful!', res);
+
+          },
+          err => alert("Cannot log in, please try again.")
+        )
+
+      }}>
+      <Title>Log In</Title>
+      <div>
+    <UserInput
         name='username'
         value={userInput.username}
         type='text'
@@ -80,11 +92,13 @@ const Main = () => {
         type='password'
         onChange={handleChange}
         placeholder='Password' />
-
-
       <SubmitButton type='submit' placeholder='Submit'/>
+      </div>
     </Form>
+
+
+
   </Container> );
 }
  
-export default Main;
+export default Login;

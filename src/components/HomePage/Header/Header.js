@@ -15,22 +15,43 @@ const Nav = styled.div`
 const Button = styled(Link)`
   text-decoration: none;
   padding: 10px 20px;
-  background-color: red;
+  background-color: lightblue;
   margin: 0 10px;
+  color: black;
   font-size: 18px;
 
 `
+const LogoutButton = styled.button`
+text-decoration: none;
+  padding: 10px 20px;
+  background-color: lightblue;
+  margin: 0 10px;
+  color: black;
+  font-size: 18px;
+  &:hover{
+    cursor: pointer;
+  }
+` 
 const divStyles = {
   height: "100%",
   display: 'flex',
   justifyContent: "center",
   alignItems: 'center'
 }
-const Header = () => {
+const Header = ({currentUser, handleLogout}) => {
   return (<Container>
     <div style={divStyles}>Generic Logo</div>
-    <Nav>
-      <Button to='register'>Sign Up</Button>
+
+      <div>
+        Welcome, {currentUser && currentUser.username}
+      </div>
+    <Nav>{
+      currentUser ?
+        <LogoutButton  onClick={handleLogout}>Log Out</LogoutButton>
+        :
+      <><Button to='login'>Log in</Button>
+      <Button to='register'>Sign Up</Button></>
+    }
     </Nav>
   </Container> );
 }

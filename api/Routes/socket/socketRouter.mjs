@@ -6,8 +6,8 @@ const app = express();
 
 
 socketRouter.post('/api/group/', async (req, res) => {
-  console.log(req.body)
-  io.emit('group chat',req.body.message)
+  console.log(req.body, 'this is from the socket router')
+  // io.emit('group chat',req.body.message)
 
   res.end()
 })

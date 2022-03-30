@@ -1,4 +1,4 @@
-
+import { string } from 'joi';
 import styled from 'styled-components';
 
 const DisconnectButton = styled.button`
@@ -14,6 +14,7 @@ const handleDisconnect = ({ socket }) => {
   // Voluntary disconnect
   const disconnectMe = () => {
     socket.disconnect()
+    
   }
   return ( 
     <DisconnectButton

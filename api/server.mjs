@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import socketRouter from './Routes/socket/socketRoutes.mjs';
+import socketRouter from './Routes/socket/socketRouter.mjs';
 import { runSocketServer } from './socketServer.mjs';
 import connectDatabase from './database.mjs';
 import { userRouter } from './Routes/users.mjs';

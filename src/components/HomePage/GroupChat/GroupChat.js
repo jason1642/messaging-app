@@ -33,18 +33,22 @@ const Main = styled.div`
 
 
 
-const GroupChat = () => {
+const GroupChat = ({ currentUser }) => {
+  
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(`${window.location.hostname}:8080/`, { transports: ["websocket"] });
+    const newSocket = io(`${window.location.hostname}:8080/`,
+      { transports: ["websocket"] });
     setSocket(newSocket);
  
-    return () => newSocket.close();
+    return () => 
+      newSocket.close();
+    
   }, []);
 
   useEffect(() => {
-    console.log(socket)
+    console.log(socket);
     if (socket !== null) {
       // socket.on('message', console.log('This message is from io'))
       socket.on("connect", () => {
@@ -60,11 +64,10 @@ const GroupChat = () => {
   return (<Container>
     <Header>header </Header>
     <Main >
-      
       {
-        socket && <><MessageDisplay socket={socket} />
+        socket && <><MessageDisplay currentUser={currentUser} socket={socket} />
       
-          <UserInput socket={socket} /></ >
+          <UserInput currentUser={currentUser} socket={socket} /></ >
       }
     </Main>
   </Container> );

@@ -9,7 +9,7 @@ const User = mongoose.model('User', new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 4,
     maxlength: 50
   },
   password: {
@@ -22,10 +22,10 @@ const User = mongoose.model('User', new mongoose.Schema({
 
 const validateUser = user => {
   const schema = Joi.object({
-    username: Joi.string().min(5).max(50).required(),
+    username: Joi.string().min(4).max(50).required(),
     password: Joi.string().min(5).max(255).required()
   })
-  return schema.validate(user)
+  return schema.validate(user);
 };
 
 export { User, validateUser };
