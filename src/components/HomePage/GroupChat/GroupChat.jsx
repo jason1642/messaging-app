@@ -53,18 +53,6 @@ const GroupChat = ({ currentUser }) => {
 
 
 
-  useEffect(() => {
-    console.log(socket);
-    if (socket !== null) {
-      // socket.on('message', console.log('This message is from io'))
-      socket.on("connect", () => {
-        console.log('YOU HAVE BEEN RECONNECTED')
-        console.log(socket)
-      });
-    }
-    
-  }, [socket]);
-
   
   
   return (

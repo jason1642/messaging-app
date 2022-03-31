@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.form`
   width: 100%;
@@ -65,34 +66,22 @@ const UserInput = ({ room_id, roomData, socket, currentUser}: Iprops ) => {
  
 
   useEffect(() => {
-    // console.log(currentUser)
   },[currentUser])
   const handleChange = (e: any) => {
     setUserInput(e.target.value)
-    // console.log(e.target.value)
   }
 
   const sendMessage = (e: any) => {
     e.preventDefault();
-    // console.log(socket)
-    
-    // console.log(room_id, 'chat room user input');
+  
     if (socket && userInput.length > 0) {
 
-      console.log('ABLE TO SEND TO ROOM')
-      console.log(room_id)
-      console.log(userInput)
-      console.log(socket)
       // if current user is undefined, send message as anon username displays as green
       // ===========================================
       // Send message to specific socket id?
       // ===========================================
 
- 
-
-
-      console.log(currentUser)
-      axios.post('http://localhost:5050/api/chat_room/message/' + room_id,
+      axios.post(baseUrl + '/api/chat_room/message/' + room_id,
       currentUser ? {
         sender: currentUser._id,
         username: currentUser.username,
@@ -113,29 +102,9 @@ const UserInput = ({ room_id, roomData, socket, currentUser}: Iprops ) => {
           }
       )
 
-
-      // socket.emit(room_id,
-        
-      // currentUser ? {
-      //   sender: currentUser._id,
-      //   username: currentUser.username,
-      //   room_id: '62438ca875ff9eeaf28b987d',
-      //   message: userInput
-      // } :
-      //   {
-      //     sender: '6242b82f3e8b1daacb71e428',
-      //     username: 'anon',
-      //     room_id: '62438ca875ff9eeaf28b987d',
-      //     message: userInput
-      //   }
-      // )
-      
       setUserInput('');
     }
   }
-
-
-  // console.log("Rendering submission erase userinput")
   return (<Container onSubmit={sendMessage}>
 
     {/* <NewMessageNotification >New Message!</NewMessageNotification> */}

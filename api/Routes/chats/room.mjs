@@ -27,7 +27,7 @@ roomRouter.post('/create', async (req, res, next) => {
   
   console.log('attempting to create a room');
   const user = await User.findOne({ _id: req.body.creator });
-  console.log(user, "just checking user")
+  
   const room = new Room(_.assign(_.pick(req.body,
     ['creator', 'name', 'socket_id', 'category']),
     {

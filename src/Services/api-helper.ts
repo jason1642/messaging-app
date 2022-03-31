@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = process.env.Node_ENV === 'production' ? 'http://localhost:5050' : 'http://localhost:5050';
+const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 
 // Create a new instance of axios with a custom config
@@ -14,18 +14,16 @@ interface RegisterData {
   username: string,
   password: string
 }
-// _-_-_-_-_ Add : Attempt to create user, if false - just send error message, if true - create a user and redirect to loging page
 export const registerUser = async (registerData: RegisterData, navigate: Function) => {
   
   await api.post('/api/user/create', registerData)
     .then(res => {
-      console.log('successfully created new user');
-      console.log(res);
+      // console.log('successfully created new user');
       navigate('/');
       window.location.reload();
     }).catch(err => {
-      console.log(err);
-      console.log('Sorry, your username or password is unavailable to use, try again');
+      // console.log(err);
+      // console.log('Sorry, your username or password is unavailable to use, try again');
       return err;
     });
   
@@ -53,7 +51,6 @@ export const verifyUser = async () => {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
     return api.get('/user/auth/verify')
       .then(res => {
-        console.log(res) 
         return res.data
       }, err => null)
   }

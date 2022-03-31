@@ -14,12 +14,10 @@ const userRouter = express.Router();
 // path: '/api/user/create'
 userRouter.post('/create', async (req, res) => {
   // First Validate The Request
-  console.log("attempting to create a user")
   const { error } = validateUser(req.body);
   if (error) {
       return res.status(400).send(error.details[0].message);
   }
-
 
   // Check if this user already exisits
   let user = await User.findOne({ username: req.body.username });
@@ -28,8 +26,8 @@ userRouter.post('/create', async (req, res) => {
   } else {
       // Insert the new user if they do not exist yet
     user = new User(_.assign(_.pick(req.body, ['username', 'password']),
-    { _id: new mongoose.Types.ObjectId()}));
-    console.log(user, 'this is from the create route')
+      { _id: new mongoose.Types.ObjectId() }));
+    
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
 
@@ -37,7 +35,7 @@ userRouter.post('/create', async (req, res) => {
     await user.save();
     console.log("User created!")
     const token = jwt.sign({ _id: user._id }, config.get('PrivateKey'));
-    console.log(token);
+    
     res.header('x-auth-token', token).send(_.pick(user, ['_id', 'username']));
   }
 });

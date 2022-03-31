@@ -11,4 +11,3 @@ const userObj: UserObj = {
 
 
 
-console.log(userObj)

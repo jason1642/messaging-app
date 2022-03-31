@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import ReactToolTip from 'react-tooltip';
 import { format, parse } from 'fecha';
+const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.div`
   display: flex;
@@ -55,7 +56,8 @@ interface MappedMessage {
   created_at: Date;
 }
 const getMessages = async () => {
-  const roomData = await axios.get('http://localhost:5050/api/room/find-one/62453eb02fe83ee70acd0422' )
+  
+  const roomData = await axios.get(baseUrl + '/api/room/find-one/62453eb02fe83ee70acd0422' )
   console.log(roomData.data)
   return roomData.data
 }
@@ -76,22 +78,35 @@ const Username = styled.div`
   font-size: 12px;
 `
 const MessageDisplay = ({ socket, currentUser }: Iprops) => {
+
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
   
+
+
   const [allChat, setAllChat] = useState<AnyObject | undefined>();
 
   useLayoutEffect(() => {
 
     getMessages().then((e: any) => setAllChat(e))
-
+    
+ 
   },[])
 
   useEffect(() => {
-    socket.on('group chat', (arg: string) => {
+    socket.on('62453eb02fe83ee70acd0422', (arg: string) => {
       getMessages().then((e: any) => setAllChat(e))
  
     });
-     console.log(allChat)
+    
   }, [])
+  
+  useEffect(() => {
+    scrollToBottom()
+  }, [allChat]);
   // socket.on('group chat', arg => setChatMessage(arg))
   // ==================
   // When chat reaches over 100 messages, only display latest 100
@@ -114,6 +129,7 @@ const MessageDisplay = ({ socket, currentUser }: Iprops) => {
           </MessageRow>)
         : <></>
       }
+      <div ref={messagesEndRef}>Latest message</div>
      
     </Container>
   )

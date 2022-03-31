@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.div`
   height: 100vh;
@@ -70,7 +71,7 @@ const Directory = () => {
   const [allRooms, setAllRooms] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:5050/api/room/all-names').then(val => {
+    axios.get(`${baseUrl}/api/room/all-names`).then(val => {
       setAllRooms(val.data);
     },err=>setAllRooms(undefined))
   },[])

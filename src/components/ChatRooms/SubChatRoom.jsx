@@ -5,6 +5,7 @@ import axios from 'axios';
 import ChatDisplay from './ChatDisplay';
 import UserInput from './UserInput'
 import io from 'socket.io-client';
+const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.div`
   height: 100vh;
@@ -35,8 +36,7 @@ const Title = styled.div`
 
 
 const getMessages = async (roomId) => {
-  const roomData = await axios.get(`http://localhost:5050/api/room/find-one/${roomId}`)
-  console.log(roomData.data)
+  const roomData = await axios.get(`${baseUrl}/api/room/find-one/${roomId}`)
   return roomData.data
 }
 
@@ -53,7 +53,6 @@ const SubChatRoom = ({currentUser}) => {
       { transports: ["websocket"] });
     
     setSocket(newSocket);
-    console.log(socket)
     newSocket && setIsConnected(true)
     return () => 
       newSocket.close();
@@ -64,7 +63,6 @@ const SubChatRoom = ({currentUser}) => {
     
   }, []);
   useEffect(() => {
-    console.log(isConnected);
 
     if (socket) {
 

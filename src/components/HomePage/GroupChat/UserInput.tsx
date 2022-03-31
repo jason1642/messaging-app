@@ -68,26 +68,15 @@ const UserInput = ({ socket, currentUser}: Iprops ) => {
  
 
   useEffect(() => {
-    console.log(currentUser)
   },[currentUser])
   const handleChange = (e: any) => {
     setUserInput(e.target.value)
-    console.log(e.target.value)
   }
 
   const sendMessage = (e: any) => {
     e.preventDefault();
-    console.log(socket);
     if (socket && userInput.length > 0) {
-      // currentUser ? {
-      //   username: currentUser.username,
-      //   _id: currentUser._id,
-      //   timestamp: new Date(),
-      //   groupId: 0000
-      // }
-      // send
-      // {username, timeSent, ID, groupId if applicable}
-      // if current user is undefined, send message as anon with ID == 0000, username then displays as green
+     
       socket.emit('sent message',
         
       currentUser ? {
@@ -108,7 +97,6 @@ const UserInput = ({ socket, currentUser}: Iprops ) => {
   }
 
 
-  console.log("Rendering submission erase userinput")
   return (<Container onSubmit={sendMessage}>
 
     <NewMessageNotification >New Message!</NewMessageNotification>
