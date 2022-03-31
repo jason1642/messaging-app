@@ -4,7 +4,7 @@ import Header from "../HomePage/Header/Header";
 
 const Container = ({handleLogin, currentUser, handleLogout}) => <>
   {useRoutes([{
-    path: '/', element: <Header handleLogout={handleLogout} currentUser={currentUser} />
+    path: '/*', element: <Header handleLogout={handleLogout} currentUser={currentUser} />
     }])}
   <MainRoutes
     currentUser={currentUser}

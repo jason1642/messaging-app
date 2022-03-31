@@ -8,6 +8,7 @@ const Container = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid black;
 `;  
 const Nav = styled.div`
 
@@ -40,12 +41,14 @@ const divStyles = {
 }
 const Header = ({currentUser, handleLogout}) => {
   return (<Container>
-    <div style={divStyles}>Generic Logo</div>
+    <Button to={'/'} style={divStyles}>Generic Logo</Button>
 
       <div>
         Welcome, {currentUser && currentUser.username}
       </div>
-    <Nav>{
+    <Nav>
+      <Button to='/chat-room/directory'>Chat Rooms</Button>
+      {
       currentUser ?
         <LogoutButton  onClick={handleLogout}>Log Out</LogoutButton>
         :

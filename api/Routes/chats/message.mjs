@@ -16,11 +16,11 @@ messageRouter.post('/room/:room_id', async (req, res, next) => {
 
   const user = await User.findOne({ _id: req.body.sender });
   const room = await Room.findOne({ _id: req.params.room_id });
-  console.log(room)
+  console.log('posted to room - ' + req.params.room_id)
  
   
  
-  !room && res.status(404).send('CANNOT FIND ROOM');
+  if(!room) return res.status(404).send('CANNOT FIND ROOM');
 
   room.messages
     .push(_.assign(_.pick(req.body, ['message']),
@@ -33,16 +33,16 @@ messageRouter.post('/room/:room_id', async (req, res, next) => {
         }
       }))
   await room.save();
-  res.status(200).send(room)
-  console.log(user.username)
+  return res.status(200).send(room)
+  // console.log(user.username)
 
 });
 
 // Get all messages from specific room
 messageRouter.get('/room/:name', async (req, res, next) => {
   const room = await Room.findOne({ name: req.params.name })
-  !room && res.status(404).send("NO ROOM FOUND");
-  res.send(room)
+   if(!room) return res.status(404).send("NO ROOM FOUND");
+  return res.send(room)
 })
 
 export default messageRouter;

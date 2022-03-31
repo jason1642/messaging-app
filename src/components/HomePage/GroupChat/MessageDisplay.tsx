@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import ReactToolTip from 'react-tooltip';
@@ -24,7 +24,7 @@ const MessageRow = styled.div`
   border: 1px solid black;
   display: flex;
   font-size: 20px;
-  padding:10px;
+  padding:5px;
   margin: 5px 0;
   border-radius: 15px;
   color: white;
@@ -50,41 +50,56 @@ const getMessages = async () => {
   console.log(roomData.data)
   return roomData.data
 }
-
+const UserInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* background-color: grey; */
+  height: 100%;
+  padding: 0 5px;
+  text-align: left;
+  color: black;
+`
+const TimeStamp = styled.div`
+  font-size: 10px;
+`;
+const Username = styled.div`
+  font-size: 12px;
+`
 const MessageDisplay = ({ socket, currentUser }: Iprops) => {
   
-  // If adding timestamps, allchat will be array of objects instead of strings
   const [allChat, setAllChat] = useState<AnyObject | undefined>();
-  const [newMessage, setNewMessage] = useState<number>(0);
 
-  useEffect(() => {
-    // console.log(allChat)
+  useLayoutEffect(() => {
+
     getMessages().then((e: any) => setAllChat(e))
-    // console.log("fetching new messages")
+
   },[])
 
-
-  // Unknown bug - console.log(allchat) always returns empty array within 
-  // socket function before and after adding message
   useEffect(() => {
-    // Change arg: string to arg: {username: string, _id: string, timestamp: date}
     socket.on('group chat', (arg: string) => {
       getMessages().then((e: any) => setAllChat(e))
-      console.log(allChat)
+ 
     });
      
-
   }, [])
   // socket.on('group chat', arg => setChatMessage(arg))
+  // ==================
+  // When chat reaches over 100 messages, only display latest 100
+  // ==================
   return (
     <Container>
-      <MessageRow>Message Bot: This is the start of your chat!</MessageRow>
-      {console.log(allChat)}
+      <MessageRow>Message Bot: This isss the start of your chat!</MessageRow>
+     
       {allChat ?
-        allChat.messages.map((data: MappedMessage, num: number) =>
-          <MessageRow data-tip={'time-stamp'} key={num}>
-            <ReactToolTip>{format(new Date(1648597402617),  'dddd MMMM Do, hh:mma')}</ReactToolTip>
-            {typeof data.sender == 'object' ? data.sender.username : 'anon'}: 
+        allChat.messages.slice(0, 100).map((data: MappedMessage, num: number) =>
+          <MessageRow key={num}>
+            <UserInfoContainer>
+              
+            <Username>{typeof data.sender == 'object' ? data.sender.username : 'anon'}: </Username>
+            <TimeStamp>{format(new Date(1648597402617),  'hh:mma')}</TimeStamp>
+            </UserInfoContainer>
+              {/* <ReactToolTip delayShow={1000}>{format(new Date(1648597402617),  'hh:mma')}</ReactToolTip> */}
+            
             {data.message}
           </MessageRow>)
         : <></>

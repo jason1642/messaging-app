@@ -27,15 +27,11 @@ const Main = styled.div`
   
 `;
 
-
-
-
-
-
-
+const Button = styled.div`
+`
 const GroupChat = ({ currentUser }) => {
-  
   const [socket, setSocket] = useState(null);
+
 
   useEffect(() => {
     const newSocket = io(`${window.location.hostname}:8080/`,
@@ -46,6 +42,10 @@ const GroupChat = ({ currentUser }) => {
       newSocket.close();
     
   }, []);
+
+
+
+
 
   useEffect(() => {
     console.log(socket);
@@ -70,6 +70,7 @@ const GroupChat = ({ currentUser }) => {
           <UserInput currentUser={currentUser} socket={socket} /></ >
       }
     </Main>
+    <Button onClick={()=>''}>Create room</Button>
   </Container> );
 }
  
