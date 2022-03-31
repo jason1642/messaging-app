@@ -9,7 +9,7 @@ const Container = styled.div`
   max-width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: grey;
+  background-color: lightsteelblue;
   /* background-color: #25232370; */
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -35,7 +35,7 @@ const Button = styled(Link)`
   justify-content: center;
   align-items: center;
   &:hover{
-    color: #4ccf4c;
+    color: black;
   }
 `
 const LogoutButton = styled.button`

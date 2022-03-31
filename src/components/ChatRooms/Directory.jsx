@@ -55,6 +55,16 @@ const NameNest = styled(Link)`
   }
 
 `
+
+const NoRoomsError = styled.div`
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 130px;
+  font-size: 40px;
+  font-weight: 300;
+
+`;
 const Directory = () => {
 
   const [allRooms, setAllRooms] = useState([])
@@ -62,19 +72,21 @@ const Directory = () => {
   useEffect(() => {
     axios.get('http://localhost:5050/api/room/all-names').then(val => {
       setAllRooms(val.data);
-    },err=>alert('Could not find any rooms.'))
+    },err=>setAllRooms(undefined))
   },[])
 
   return (<Container>
     <Title>Chat Room Directory</Title>
     <Main>
       {
-        allRooms && allRooms.map((val, i) =>
+        allRooms ? allRooms.map((val, i) =>
           <NameNest
             key={i}
             value={val._id}
             to={`/chat-room/${val._id}`}>{val.name}
           </NameNest>)
+          : 
+          <NoRoomsError>No available chat rooms</NoRoomsError>
     }
     </Main>
   </Container> );

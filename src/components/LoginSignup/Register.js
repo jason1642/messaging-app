@@ -11,7 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #E1C5BA;
+  /* background-color: #E1C5BA; */
 
 `;
 const Title = styled.div`
