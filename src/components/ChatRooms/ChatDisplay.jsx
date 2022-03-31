@@ -55,24 +55,6 @@ const Message = styled.div`
 `
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const ChatDisplay = ({ room_id, roomData, socket }) => {
 
 
