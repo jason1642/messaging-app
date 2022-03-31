@@ -2,28 +2,47 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.form`
-  width: 100%;
+    width: 85%;
+
   display: flex;
   justify-content: space-evenly;
-  height: 50px;
+  height: 65px;
+  max-height: 10%;
+  min-height: 10%;
+  padding: 8px 0;
   max-height: 10%;
   min-height: 10%;
   border-radius: 0 0 15px 15px;
   background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   /* border: 1px solid black; */
 `;  
 
 const TextInput = styled.input`
-  width: 40%;
-
+  width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-width: 0;
+  border-radius: 10px;
+  padding-left: 8px;
+  font-size: 16px;
+  &:focus-within{
+    border-width: 0px;
+  }
 `
 const SubmitButton = styled.input`
   height: 100%;
   padding: 5px 20px;
   margin: 0 10px;
   font-size: 18px;
-  
-`
+  border-radius: 15px;
+  border-width: 0;
+  color: white;
+  background-color: #4ccf4c;
+  &:hover{
+    cursor: pointer;
+    color: black;
+  }`
 const NewMessageNotification = styled.div`
   
   background-color: grey;
@@ -74,17 +93,16 @@ const UserInput = ({ socket, currentUser}: Iprops ) => {
       currentUser ? {
         sender: currentUser._id,
         username: currentUser.username,
-        room_id: '62438ca875ff9eeaf28b987d',
+        room_id: '62453eb02fe83ee70acd0422',
         message: userInput
       } :
         {
           sender: '6242b82f3e8b1daacb71e428',
           username: 'anon',
-          room_id: '62438ca875ff9eeaf28b987d',
+          room_id: '62453eb02fe83ee70acd0422',
           message: userInput
         }
       )
-      
       setUserInput('');
     }
   }

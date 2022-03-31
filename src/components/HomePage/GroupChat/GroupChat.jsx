@@ -4,31 +4,36 @@ import io from 'socket.io-client';
 import UserInput from './UserInput';
 import MessageDisplay  from './MessageDisplay';
 
-const Container = styled.div`
-  display: flex;
-  height:75vh;
-  width: 70%;
-  background-color: white;
-  /* border: 1px solid black; */
-  padding: 15px;
-  flex-direction: column;
 
-`;  
-const Header = styled.div`
-  height: 10%;
-  width: 100%;
-  background-color: grey;
-` 
+
 const Main = styled.div`
   display: flex;
+  max-height: 80vh;
+  width:80%;
+  margin-top: 12px;
+  border-radius: 15px;
+  /* height: 100vh; */
+  padding: 10px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   flex-direction: column;
-  background-color: purple;
-  height: 100%;
-  
-`;
+  justify-content: center;
+  align-items: center;
 
-const Button = styled.div`
-`
+
+`;
+const Header = styled.div`
+    width: 85%;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px 15px 0  0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 300;
+  color: #59a2f5;
+  /* background-color: #59a2f5a3; */
+` 
 const GroupChat = ({ currentUser }) => {
   const [socket, setSocket] = useState(null);
 
@@ -61,17 +66,20 @@ const GroupChat = ({ currentUser }) => {
 
   
   
-  return (<Container>
-    <Header>header </Header>
-    <Main >
+  return (
+    
+    <Main>
       {
-        socket && <><MessageDisplay currentUser={currentUser} socket={socket} />
+        socket && <>
+          <Header>Public Chat</Header>
+
+          <MessageDisplay currentUser={currentUser} socket={socket} />
       
-          <UserInput currentUser={currentUser} socket={socket} /></ >
+          <UserInput currentUser={currentUser} socket={socket} />
+        </ >
       }
     </Main>
-    <Button onClick={()=>''}>Create room</Button>
-  </Container> );
+  );
 }
  
 export default GroupChat;

@@ -6,23 +6,25 @@ const navigate = useNavigate;
 
 const Container = styled.div`
   /* border: 1px solid black; */
+  height: 90vh;
+  width: 100%;
   display: flex;
-  height: 100vh;
-  width: 100vw;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
-  background-color: grey;
+  background-color: #E1C5BA;
   align-items: center;
 `;  
 const Title = styled.div`
-  font-size: 36px;
-  /* margin: 20px 0; */
+   font-weight: 400;
+  font-size: 1.8em;
+  color: #faf8f9;
 `;
 
 const Form = styled.form`
   /* border: 1px solid black; */
-  background-color: wheat;
+  background-color: #96A4CE;
   display: flex;
+  border-radius: 15px;
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
@@ -32,10 +34,15 @@ const Form = styled.form`
 
 `
 const UserInput = styled.input`
-  border: 1px solid black;
-  margin: 10px 0;
+   margin: 10px 0;
   padding: 10px;
   width: 80%;
+  border-width: 0;
+
+  border-radius: 15px;
+  &:focus-within{
+    border-width: 0px;
+  }
 `
 
 const SubmitButton = styled.input`
@@ -45,11 +52,13 @@ const SubmitButton = styled.input`
   border: 1px solid black;
   border-radius: 15px;
   width: fit-content;
+  border-width: 0;
+  margin: 15px 0 ;
   color: darkslategrey;
   &:hover{
     cursor: pointer;
-    background-color: grey;
-    color: black;
+    background-color: #4C70B2;
+    color: white;
   }
 `;
 

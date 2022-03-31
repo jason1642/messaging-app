@@ -8,18 +8,27 @@ import io from 'socket.io-client';
 
 const Container = styled.div`
   height: 100vh;
-  width: 100vw;
-  background-color: grey;
+  width: 100%;
+  /* background-color: grey; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 const Main = styled.div`
-  
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  margin-top: 15px;
+  height: 75%;
+  max-height: 80vh;
 `;
 const Title = styled.div`
-  
+  background-color:white;
+  border-radius: 15px 15px 0  0 ;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 3px 0;
+  font-weight: 300;
+  font-size: 18px;
 `;
 
 
@@ -33,7 +42,7 @@ const getMessages = async (roomId) => {
 
 
 
-const SubChatRoom = () => {
+const SubChatRoom = ({currentUser}) => {
   const { room_id } = useParams();
   const [roomData, setRoomData] = useState();
   const [socket, setSocket] = useState();
@@ -46,7 +55,6 @@ const SubChatRoom = () => {
     setSocket(newSocket);
     console.log(socket)
     newSocket && setIsConnected(true)
-
     return () => 
       newSocket.close();
   }, []);
@@ -58,11 +66,9 @@ const SubChatRoom = () => {
   useEffect(() => {
     console.log(isConnected);
 
-    
     if (socket) {
 
       socket.on("connect", () => {
-
         socket.emit('join chatroom', room_id)
         socket.on(room_id, (arg) => {
           getMessages(room_id).then((e) => setRoomData(e));
@@ -71,52 +77,15 @@ const SubChatRoom = () => {
  
       });
     }
-   
     
   }, [socket]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // console.log(Object.keys(io.sockets.adapter.rooms[room_id].sockets))
-  useEffect(() => {
-    // socket && socket.on(room_id, (arg) => {
-    //   console.log('LISTENING TO ROOM')
-    //   getMessages(room_id).then((e) => setRoomData(e));
-    // })
-   
-  
-
-  }, [socket])
-
-
-
 
   return ( <Container>
     {
      (roomData && socket) &&  <Main>
-        <Title>Welcome to chatroom: {roomData.name}/</Title>
+        <Title>Welcome to chatroom: {roomData.name}</Title>
         <ChatDisplay room_id={room_id} socket={socket} roomData={roomData} />
-        <UserInput room_id={room_id } socket={socket }roomData={roomData}/>
+        <UserInput currentUser={currentUser} room_id={room_id } socket={socket }roomData={roomData}/>
       </Main>
     }
   </Container>);

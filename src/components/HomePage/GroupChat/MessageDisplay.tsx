@@ -6,32 +6,41 @@ import { format, parse } from 'fecha';
 
 const Container = styled.div`
   display: flex;
-  /* justify-content: center; */
   position: relative;
   flex-direction: column;
-  width: 100%;
-  height:90% ;
+  width: 85%;
+  height:100% ;
   max-height: 90%;
-  /* padding: 10px; */
-  background-color: grey;
+  align-items: center;
   overflow-y: scroll;
-  border-radius: 15px 15px 0 0 ;
+  /* background-color:#6892e7; */
+  justify-content: flex-start;
+  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0px;
 `;
 
 const MessageRow = styled.div`
-  /* width: auto; */
-  height: 30px;
-  border: 1px solid black;
+  width: 90%;
+  /* min-height: 20px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: left;
+  height: auto;
+  /* overflow: hidden; */
   display: flex;
-  font-size: 20px;
-  padding:5px;
+  font-size: 18px;
+  padding:10px 10px 10px 8px;
   margin: 5px 0;
-  border-radius: 15px;
+  border-radius: 15px 15px 15px 5px;
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 300;
   background-color: #1982FC;
   opacity: .85;
+  align-items: center;
+  justify-content: flex-start;
+
+
+
 `
 interface AnyObject { [key: string]: any };
 interface CurrentUser { username: string, _id: string}
@@ -46,17 +55,18 @@ interface MappedMessage {
   created_at: Date;
 }
 const getMessages = async () => {
-  const roomData = await axios.get('http://localhost:5050/api/room/find-by-name/public-room')
+  const roomData = await axios.get('http://localhost:5050/api/room/find-one/62453eb02fe83ee70acd0422' )
   console.log(roomData.data)
   return roomData.data
 }
 const UserInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: grey; */
   height: 100%;
   padding: 0 5px;
   text-align: left;
+  align-self: flex-start;
+  /* background-color: grey; */
   color: black;
 `
 const TimeStamp = styled.div`
@@ -80,7 +90,7 @@ const MessageDisplay = ({ socket, currentUser }: Iprops) => {
       getMessages().then((e: any) => setAllChat(e))
  
     });
-     
+     console.log(allChat)
   }, [])
   // socket.on('group chat', arg => setChatMessage(arg))
   // ==================
@@ -88,7 +98,7 @@ const MessageDisplay = ({ socket, currentUser }: Iprops) => {
   // ==================
   return (
     <Container>
-      <MessageRow>Message Bot: This isss the start of your chat!</MessageRow>
+      <MessageRow>Message Bot: This is the start of the chat!</MessageRow>
      
       {allChat ?
         allChat.messages.slice(0, 100).map((data: MappedMessage, num: number) =>
@@ -96,7 +106,7 @@ const MessageDisplay = ({ socket, currentUser }: Iprops) => {
             <UserInfoContainer>
               
             <Username>{typeof data.sender == 'object' ? data.sender.username : 'anon'}: </Username>
-            <TimeStamp>{format(new Date(1648597402617),  'hh:mma')}</TimeStamp>
+            <TimeStamp>{format(new Date(data.created_at),  'hh:mma')}</TimeStamp>
             </UserInfoContainer>
               {/* <ReactToolTip delayShow={1000}>{format(new Date(1648597402617),  'hh:mma')}</ReactToolTip> */}
             

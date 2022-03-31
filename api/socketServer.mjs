@@ -23,11 +23,14 @@ const io = new Server(httpServer, {
 const runSocketServer = () => {
   httpServer.listen(port, console.log("Socket io on port" + port));
 
+
+  // Home page public chat
   io.on('connect', (socket) => {
     console.log('a user connected3');
     //                                  Not socket.emit
-    socket.on('sent message', async(arg) => {
-      await api.post(`http://localhost:5050/api/message/room/62438ca875ff9eeaf28b987d`, arg)
+    socket.on('sent message', async (arg) => {
+      console.log(arg)
+      await api.post(`http://localhost:5050/api/message/room/${arg.room_id}`, arg)
         .then((ele) => console.log(ele, 'Successfully sent'),
           err => console.log(err, 'There is an error in sockerServer.mjs'))
       console.log('message sent by ' + arg.username);
@@ -40,29 +43,19 @@ const runSocketServer = () => {
 
 
     
-    socket.on('join chatroom', (room) => {
 
+
+    socket.on('join chatroom', (room) => {
       socket.join(room)
       console.log(socket.rooms)
-
-
-
 
       socket.on(room, () => {
         console.log('message13')
       })
       socket.emit(room, 'NEW MESSAGE')
-
-      
-     
-
-      
+ 
     })
-
-    
-  
   })
-  
 }
 
 export { runSocketServer };

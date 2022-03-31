@@ -5,26 +5,50 @@ import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #847e94e6;
 `;  
 
 const Title = styled.h2`
-  
+  font-size: 1.5em;
+  /* width: 100%; */
+  font-weight: 300;
+
 `;
 const Main = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
   max-height: 100vh;
+  justify-content: space-around;
+  align-items: space-evenly;
 `;
 
 const NameNest = styled(Link)`
-  border: 1px solid black;
-  max-width: 35%;
-  padding: 15px 15px;
+  /* border: 1px solid black; */
+  width: 140px;
+  /* margin: 15px; */
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-
+  padding: 15px 15px;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:visited {
+    color: black;
+  }
   &:hover{
     cursor: pointer;
     color: blue;
@@ -42,7 +66,7 @@ const Directory = () => {
   },[])
 
   return (<Container>
-    <Title>DIRECTORY</Title>
+    <Title>Chat Room Directory</Title>
     <Main>
       {
         allRooms && allRooms.map((val, i) =>

@@ -6,24 +6,37 @@ const Container = styled.form`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  height: 50px;
+  height: 45px;
+  padding: 5px 0;
   max-height: 10%;
   min-height: 10%;
   border-radius: 0 0 15px 15px;
   background-color: white;
   /* border: 1px solid black; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 `;  
 
 const TextInput = styled.input`
-  width: 40%;
-
+  width: 60%;
+  font-size: 16px;
+  border-width: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  padding-left: 10px;
 `
 const SubmitButton = styled.input`
   height: 100%;
   padding: 5px 20px;
   margin: 0 10px;
   font-size: 18px;
-  
+  border-radius: 15px;
+  border-width: 0;
+  color: white;
+  background-color: #4ccf4c;
+  &:hover{
+    cursor: pointer;
+  }
 `
 const NewMessageNotification = styled.div`
   
@@ -78,7 +91,7 @@ const UserInput = ({ room_id, roomData, socket, currentUser}: Iprops ) => {
  
 
 
-
+      console.log(currentUser)
       axios.post('http://localhost:5050/api/chat_room/message/' + room_id,
       currentUser ? {
         sender: currentUser._id,
@@ -125,17 +138,16 @@ const UserInput = ({ room_id, roomData, socket, currentUser}: Iprops ) => {
   // console.log("Rendering submission erase userinput")
   return (<Container onSubmit={sendMessage}>
 
-    <NewMessageNotification >New Message!</NewMessageNotification>
+    {/* <NewMessageNotification >New Message!</NewMessageNotification> */}
     <TextInput
       type={'text'}    
-      placeholder={"Write a message NOW"}
+      placeholder={"Send a message"}
       value={userInput}
       onChange={handleChange}
     />
     <SubmitButton
       type="submit"
-      placeholder='Send'
-      
+      value={'Send'}
       />
   </Container> );
 }

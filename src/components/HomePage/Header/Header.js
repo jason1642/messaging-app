@@ -6,45 +6,56 @@ const Container = styled.div`
   display: flex;
   height: 50px;
   width: 100%;
+  max-width: 100%;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid black;
+  background-color: grey;
+  /* background-color: #25232370; */
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 `;  
 const Nav = styled.div`
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 
+ 
 `
 const Button = styled(Link)`
   text-decoration: none;
-  padding: 10px 20px;
-  background-color: lightblue;
-  margin: 0 10px;
-  color: black;
-  font-size: 18px;
 
+  color: white;
+  font-size: 18px;
+  height: 100%;
+  width: 30%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    color: #4ccf4c;
+  }
 `
 const LogoutButton = styled.button`
 text-decoration: none;
   padding: 10px 20px;
-  background-color: lightblue;
-  margin: 0 10px;
+  /* background-color: lightblue; */
+  /* margin: 0 10px; */
   color: black;
   font-size: 18px;
   &:hover{
     cursor: pointer;
   }
 ` 
-const divStyles = {
-  height: "100%",
-  display: 'flex',
-  justifyContent: "center",
-  alignItems: 'center'
-}
+
 const Header = ({currentUser, handleLogout}) => {
   return (<Container>
-    <Button to={'/'} style={divStyles}>Generic Logo</Button>
+    <Button to={'/'} >Home</Button>
 
       <div>
-        Welcome, {currentUser && currentUser.username}
+        Welcome, {currentUser ? currentUser.username : 'anon'}
       </div>
     <Nav>
       <Button to='/chat-room/directory'>Chat Rooms</Button>

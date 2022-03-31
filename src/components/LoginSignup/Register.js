@@ -5,30 +5,42 @@ import { registerUser } from '../../Services/api-helper.ts';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 90vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
-`;
-const Title = styled.h2`
+  background-color: #E1C5BA;
 
+`;
+const Title = styled.div`
+  font-weight: 400;
+  font-size: 1.8em;
+  color: #faf8f9;
 `;
 const Form = styled.form`
-  background-color: grey;
+  background-color: #96A4CE;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
+  padding: 25px;
   width: 70%;
-
+  height: 70%;
+  border-radius: 15px;
 `;
 
 const UserInput = styled.input`
   margin: 10px 0;
   padding: 10px;
   width: 80%;
+  border-width: 0;
+
+  border-radius: 15px;
+  &:focus-within{
+    border-width: 0px;
+  }
 `;
 
 const SubmitButton = styled.input`
@@ -38,11 +50,13 @@ const SubmitButton = styled.input`
   border: 1px solid black;
   border-radius: 15px;
   width: fit-content;
+  border-width: 0;
+  margin: 15px 0 ;
   color: darkslategrey;
   &:hover{
     cursor: pointer;
-    background-color: grey;
-    color: black;
+    background-color: #4C70B2;
+    color: white;
   }
 `;
 
@@ -61,12 +75,13 @@ const Main = () => {
   };
   
   return (<Container>
-    <Title>Register Here!</Title>  
+    
     <Form onSubmit={(e) => {
       e.preventDefault();
       registerUser(userInput,navigate);
     }}>
-     
+      <Title>Register Here!</Title>  
+      <div>
       <UserInput
         name='username'
         value={userInput.username}
@@ -82,8 +97,10 @@ const Main = () => {
         placeholder='Password' />
 
 
-      <SubmitButton type='submit' placeholder='Submit'/>
+      <SubmitButton type='submit' placeholder='Submit' />
+      </div>
     </Form>
+
   </Container> );
 }
  
