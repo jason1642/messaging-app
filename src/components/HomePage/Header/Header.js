@@ -13,7 +13,9 @@ const Container = styled.div`
   /* background-color: #25232370; */
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  @media (max-width: 480px){
 
+  }
 `;  
 const Nav = styled.div`
   height: 100%;
@@ -21,7 +23,9 @@ const Nav = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
+  @media (max-width: 480px){
+    width: 60%;
+  }
  
 `
 const Button = styled(Link)`
@@ -30,14 +34,22 @@ const Button = styled(Link)`
   color: white;
   font-size: 18px;
   height: 100%;
-  width: 30%;
+  width: 40%;
   display:flex;
   justify-content: center;
   align-items: center;
   &:hover{
     color: black;
   }
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `
+const Welcome = styled.div`
+  @media (max-width: 480px){
+    display: none;
+  }
+`;
 const LogoutButton = styled.button`
 text-decoration: none;
   padding: 10px 20px;
@@ -52,11 +64,11 @@ text-decoration: none;
 
 const Header = ({currentUser, handleLogout}) => {
   return (<Container>
-    <Button to={'/'} >Home</Button>
+    <Button style={{width: "20%"}} to={'/'} >Home</Button>
 
-      <div>
+      <Welcome>
         Welcome, {currentUser ? currentUser.username : 'anon'}
-      </div>
+      </Welcome>
     <Nav>
       <Button to='/chat-room/directory'>Chat Rooms</Button>
       {

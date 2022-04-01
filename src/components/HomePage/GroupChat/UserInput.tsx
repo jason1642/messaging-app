@@ -6,6 +6,7 @@ const Container = styled.form`
 
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   height: 65px;
   max-height: 10%;
   min-height: 10%;
@@ -14,8 +15,12 @@ const Container = styled.form`
   min-height: 10%;
   border-radius: 0 0 15px 15px;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* border: 1px solid black; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.434), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  @media (max-width: 480px){
+    width: 95%;
 
+  }
   /* border: 1px solid black; */
 `;  
 
@@ -26,6 +31,10 @@ const TextInput = styled.input`
   border-radius: 10px;
   padding-left: 8px;
   font-size: 16px;
+  @media (max-width: 480px){
+    width:60%;
+    height: 80%;
+    }
   &:focus-within{
     border-width: 0px;
   }
@@ -39,6 +48,11 @@ const SubmitButton = styled.input`
   border-width: 0;
   color: white;
   background-color: #4ccf4c;
+  @media (max-width: 480px){
+    padding: 1px 20px;
+    height: 80%;
+    font-size: 18px;
+  }
   &:hover{
     cursor: pointer;
     color: black;
@@ -54,7 +68,10 @@ const NewMessageNotification = styled.div`
   padding: 5px 14px;
   opacity: 0;
   width: 15%;
-
+  @media (max-width: 480px){
+    width: 95%;
+    display: none;
+  }
 `
 interface Socket { [key: string]: any };
 interface CurrentUser { username: string, _id: string } 

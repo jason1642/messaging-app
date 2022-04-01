@@ -14,10 +14,13 @@ const Container = styled.div`
   max-height: 90%;
   align-items: center;
   overflow-y: scroll;
-  /* background-color:#6892e7; */
   justify-content: flex-start;
-  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 0px;
+  @media (max-width: 480px) {
+    background-color:#a5c0f7;
+    width: 95%;
+  }
 `;
 
 const MessageRow = styled.div`

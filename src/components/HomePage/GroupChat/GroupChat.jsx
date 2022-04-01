@@ -19,13 +19,16 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  @media (max-width: 480px){
+    width: 100%;
+    height: 95vh;
+  }
 
 `;
 const Header = styled.div`
     width: 85%;
 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.434), 0 6px 20px 0 rgba(0, 0, 0, 0.447);
   border-radius: 15px 15px 0  0;
   display: flex;
   justify-content: center;
@@ -34,6 +37,10 @@ const Header = styled.div`
   font-weight: 300;
   color: #59a2f5;
   /* background-color: #59a2f5a3; */
+  @media (max-width: 480px){
+    width: 95%;
+
+  }
 ` 
 const GroupChat = ({ currentUser }) => {
   const [socket, setSocket] = useState(null);

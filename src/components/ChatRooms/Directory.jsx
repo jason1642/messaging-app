@@ -5,30 +5,50 @@ import { Link } from 'react-router-dom';
 const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.div`
-  height: 100vh;
+  /* height: auto; */
   width: 100%;
-  max-height: 100vh;
+  /* max-height: 100vh; */
+  padding: 0px 0 30px 0;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
   background-color: #847e94e6;
+
+  @media (min-width:1000px){
+    
+  }
 `;  
 
 const Title = styled.h2`
-  font-size: 1.5em;
+  font-size: 1.9em;
   /* width: 100%; */
   font-weight: 300;
 
 `;
 const Main = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  height: 100%;
-  width: 100%;
+  height: auto;
   max-height: 100vh;
-  justify-content: space-around;
-  align-items: space-evenly;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  @media (max-width: 480px){
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: row;
+    max-height: none;
+  }
+
+  @media (min-width:1000px){
+    padding: 40px;
+    height: 100vh;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 const NameNest = styled(Link)`
@@ -41,12 +61,26 @@ const NameNest = styled(Link)`
   align-items: center;
   text-decoration: none;
   padding: 15px 15px;
+  margin: 20px;
   font-size: 20px;
   font-weight: 300;
   background-color: white;
   text-decoration: none;
   color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  @media (max-width: 480px){
+   width : 30%;
+   padding: 10px;
+   margin: 5px;
+   
+  }
+  @media (min-width:1000px){
+    padding: 40px;
+    font-size: 40px;
+    margin: 10px;
+    /* height: 100%; */
+    /* width: 100%; */
+  }
   &:visited {
     color: black;
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { format } from 'fecha';
 
@@ -15,7 +15,12 @@ const Container = styled.div`
   padding-top: 0;
   background-color: white;
   overflow-y: scroll;
-  
+  @media (max-width: 480px ){
+    width: 100%;
+    padding: 0;
+    height: 90vh;
+    align-items: center;
+  }
   /* border-radius: 15px 0  ; */
 `;
 
@@ -33,6 +38,9 @@ const MessageRow = styled.div`
   font-weight: 300;
   background-color: #1982FC;
   opacity: .85;
+  @media (max-width: 480px){
+    width: 90%;
+  }
 `
 const UserInfoContainer = styled.div`
   display: flex;
@@ -57,6 +65,15 @@ const Message = styled.div`
 
 const ChatDisplay = ({ room_id, roomData, socket }) => {
 
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [roomData]);
+
 
   return (<Container>
     
@@ -73,6 +90,7 @@ const ChatDisplay = ({ room_id, roomData, socket }) => {
         </MessageRow>
       )
     }
+    <div ref={messagesEndRef} >Latest message</div>
   </Container>);  
 }
  

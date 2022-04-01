@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useLayoutEffect } from 'react';
+import React, { useState, useEffect,useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -10,10 +10,14 @@ const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.he
 const Container = styled.div`
   height: 100vh;
   width: 100%;
-  /* background-color: grey; */
+  background-color: grey;
   display: flex;
   justify-content: center;
   /* align-items: center; */
+  @media (max-width: 480px ){
+    width: 100%;
+    height: 95vh;
+  }
 `;
 
 const Main = styled.div`
@@ -22,6 +26,11 @@ const Main = styled.div`
   margin-top: 15px;
   height: 75%;
   max-height: 80vh;
+  @media (max-width: 480px ){
+    width: 90%;
+  }
+  /* border: 1px solid black; */
+  /* background-color: black; */
 `;
 const Title = styled.div`
   background-color:white;
@@ -47,6 +56,10 @@ const SubChatRoom = ({currentUser}) => {
   const [roomData, setRoomData] = useState();
   const [socket, setSocket] = useState();
   const [isConnected, setIsConnected] = useState(false);
+
+
+
+
 
   useEffect(() => {
     const newSocket = io(`${window.location.hostname}:8080/`,

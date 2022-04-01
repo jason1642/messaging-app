@@ -13,11 +13,18 @@ const Container = styled.div`
   justify-content: center;
   /* background-color: #E1C5BA; */
   align-items: center;
+  @media (max-width: 480px){
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
 `;  
 const Title = styled.div`
    font-weight: 400;
   font-size: 1.8em;
   color: #faf8f9;
+  @media (max-width: 480px){
+    font-size: 40px;
+  }
 `;
 
 const Form = styled.form`
@@ -31,6 +38,10 @@ const Form = styled.form`
   padding: 25px;
   width: 70%;
   height: 70%;
+  @media (max-width: 480px){
+    padding: 15px;
+    width: 85%;
+  }
 
 `
 const UserInput = styled.input`
@@ -42,6 +53,11 @@ const UserInput = styled.input`
   border-radius: 15px;
   &:focus-within{
     border-width: 0px;
+  }
+  @media (max-width: 480px){
+    justify-content: flex-start;
+    width: 95%;
+    
   }
 `
 
@@ -59,6 +75,12 @@ const SubmitButton = styled.input`
     cursor: pointer;
     background-color: #4C70B2;
     color: white;
+  }
+  @media (max-width: 480px){
+    justify-content: flex-start;
+    /* width: 95%; */
+    padding: 12px 30px;
+    font-size: 22px; 
   }
 `;
 
