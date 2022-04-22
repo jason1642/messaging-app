@@ -39,12 +39,12 @@ authRouter.post('/', async (req, res) => {
 authRouter.get('/verify', async(req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) res.status(403);
+  if (token == null) return res.status(403);
   
   jwt.verify(token, process.env.TOKEN_SECRET,
     async (err, user) => {
       err && res.status(403)
-      await User.findOne({ _id: user._id }).then(user=>res.send(user))
+      try { return await User.findOne({ _id: user._id }).then(user=>res.send(user))} catch (err) {return res.status(404).send('user not found')}
       
     }  
   );

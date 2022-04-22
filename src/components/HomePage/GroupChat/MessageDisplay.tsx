@@ -61,7 +61,7 @@ interface MappedMessage {
 const getMessages = async () => {
   
   const roomData = await axios.get(baseUrl + '/api/room/find-one/62453eb02fe83ee70acd0422' )
-  console.log(roomData.data)
+  // console.log(roomData.data)
   return roomData.data
 }
 const UserInfoContainer = styled.div`
