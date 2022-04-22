@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { format, parse } from 'fecha';
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+import { format} from 'fecha';
+const baseUrl = process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.div`
   display: flex;
