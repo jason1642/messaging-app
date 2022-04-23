@@ -1,4 +1,3 @@
-import { string } from 'joi';
 import styled from 'styled-components';
 
 const DisconnectButton = styled.button`

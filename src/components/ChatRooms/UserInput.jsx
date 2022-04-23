@@ -9,7 +9,7 @@ const Container = styled.form`
   justify-content: space-evenly;
   height: 45px;
   padding: 5px 0;
-  max-height: 10%;
+  max-height: 10%; 
   min-height: 10%;
   border-radius: 0 0 15px 15px;
   background-color: white;

@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import { useRoutes, Navigate } from 'react-router-dom';
-import HomePage from '../HomePage/HomePage';
 import Register from '../LoginSignup/Register';
 import Login from '../LoginSignup/Login'
 import Directory from '../ChatRooms/Directory';
