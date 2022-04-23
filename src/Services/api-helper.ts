@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.app.com' : 'http://localhost:5050';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.app.com' : 'http://localhost:5050';
 
 
 // Create a new instance of axios with a custom config
