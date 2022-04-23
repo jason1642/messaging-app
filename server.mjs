@@ -10,16 +10,11 @@ import config from 'config';
 import roomRouter from './Routes/chats/room.mjs';
 import messageRouter from './Routes/chats/message.mjs'
 import chatRoomRouter from './Routes/chats/chat-room.mjs';
-import httpProxy from 'http-proxy'
+
 const app = express();
 const port = process.env.PORT || 5050; 
 
-httpProxy.createProxyServer({
-  target: 'https://circle-chat1.herokuapp.com/',
-  toProxy: true,
-  changeOrigin: true,
-  xfwd: true
-});
+
 
 // var whitelist = [`http://localhost:`, 'https://circle-chat1.herokuapp.com']
 // var corsOptions = {
@@ -36,8 +31,8 @@ httpProxy.createProxyServer({
 
 
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 app.use(socketRouter);
 app.use('/api/user/', userRouter);
 app.use('/user/auth', authRouter);
