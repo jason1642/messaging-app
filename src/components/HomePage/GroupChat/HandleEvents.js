@@ -11,10 +11,10 @@ const DisconnectButton = styled.button`
 const handleDisconnect = ({ socket }) => {
   
   // Voluntary disconnect
-  const disconnectMe = () => {
-    socket.disconnect()
+  // const disconnectMe = () => {
+  //   socket.disconnect()
     
-  }
+  // }
   return ( 
     <DisconnectButton
     // onClick={}

@@ -3,12 +3,12 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { format} from 'fecha';
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+const baseUrl = process.env.NODE_ENV ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 console.log(process.env.NODE_ENV)
 // console.log(process.env['NODE' + '_ENV'])
 console.log(process.env)
 const Container = styled.div`
-  display: flex;
+  display: flex; 
   position: relative;
   flex-direction: column;
   width: 85%;
@@ -110,7 +110,7 @@ const MessageDisplay = ({ socket, currentUser }) => {
       getMessages().then((e) => setAllChat(e))
  
     });
-    
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
   useEffect(() => {

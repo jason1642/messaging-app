@@ -39,19 +39,19 @@ const SubmitButton = styled.input`
     cursor: pointer;
   }
 `
-const NewMessageNotification = styled.div`
+// const NewMessageNotification = styled.div`
   
-  background-color: grey;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  padding: 5px 14px;
-  opacity: 0;
-  width: 15%;
+//   background-color: grey;
+//   align-self: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 50px;
+//   padding: 5px 14px;
+//   opacity: 0;
+//   width: 15%;
 
-`
+// `
 // interface Socket { [key: string]: any };
 // interface CurrentUser { username: string, _id: string } 
 // interface Iprops {

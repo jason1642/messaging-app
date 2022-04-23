@@ -67,13 +67,15 @@ const SubChatRoom = ({currentUser}) => {
     
     setSocket(newSocket);
     newSocket && setIsConnected(true)
+    console.log(isConnected)
     return () => 
       newSocket.close();
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getMessages(room_id).then((e) => setRoomData(e))
-    
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
 
@@ -88,7 +90,7 @@ const SubChatRoom = ({currentUser}) => {
  
       });
     }
-    
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   return ( <Container>

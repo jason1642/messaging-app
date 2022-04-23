@@ -87,7 +87,7 @@ const Main = () => {
     username: '',
     password: ''
   });
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setUserInput(prev => ({ ...prev, [e.target.name]: e.target.value }))

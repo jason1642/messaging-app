@@ -10,11 +10,34 @@ import config from 'config';
 import roomRouter from './Routes/chats/room.mjs';
 import messageRouter from './Routes/chats/message.mjs'
 import chatRoomRouter from './Routes/chats/chat-room.mjs';
+import httpProxy from 'http-proxy'
 const app = express();
+const port = process.env.PORT || 5050; 
+
+httpProxy.createProxyServer({
+  target: 'https://circle-chat1.herokuapp.com/',
+  toProxy: true,
+  changeOrigin: true,
+  xfwd: true
+});
+
+// var whitelist = [`http://localhost:`, 'https://circle-chat1.herokuapp.com']
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
 
 
-app.use(express.json());
+
+
+
 app.use(cors());
+app.use(express.json());
 app.use(socketRouter);
 app.use('/api/user/', userRouter);
 app.use('/user/auth', authRouter);
@@ -22,7 +45,7 @@ app.use('/api/room', roomRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/chat_room', chatRoomRouter);
 
-app.listen(5050, console.log("listening on port 5050"));
+app.listen(port, console.log("listening on port " + port));
 
 if (!config.get('PrivateKey')) {
   console.error('FATAL ERROR: PrivateKey is not defined.');
