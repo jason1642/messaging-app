@@ -107,6 +107,7 @@ const Directory = () => {
   useEffect(() => {
     axios.get(`${baseUrl}/api/room/all-names`).then(val => {
       setAllRooms(val.data);
+      console.log(val)
     },err=>setAllRooms(undefined))
   },[])
 
