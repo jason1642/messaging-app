@@ -48,18 +48,18 @@ const MessageRow = styled.div`
 
 
 `
-interface AnyObject { [key: string]: any };
-interface CurrentUser { username: string, _id: string}
-interface Iprops {
-  socket: AnyObject,
-  currentUser: CurrentUser
-}
-interface MappedMessage {
-  message: string;
-  sender: any;
-  room_id: string;
-  created_at: Date;
-}
+// interface AnyObject { [key: string]: any };
+// interface CurrentUser { username: string, _id: string}
+// interface Iprops {
+//   socket: AnyObject,
+//   currentUser: CurrentUser
+// }
+// interface MappedMessage {
+//   message: string;
+//   sender: any;
+//   room_id: string;
+//   created_at: Date;
+// }
 const getMessages = async () => {
   
   const roomData = await axios.get(baseUrl + '/api/room/find-one/62453eb02fe83ee70acd0422' )
@@ -82,7 +82,7 @@ const TimeStamp = styled.div`
 const Username = styled.div`
   font-size: 12px;
 `
-const MessageDisplay = ({ socket, currentUser }: Iprops) => {
+const MessageDisplay = ({ socket, currentUser }) => {
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
   const scrollToBottom = () => {
@@ -92,18 +92,18 @@ const MessageDisplay = ({ socket, currentUser }: Iprops) => {
   
 
 
-  const [allChat, setAllChat] = useState<AnyObject | undefined>();
+  const [allChat, setAllChat] = useState();
 
   useLayoutEffect(() => {
 
-    getMessages().then((e: any) => setAllChat(e))
+    getMessages().then((e) => setAllChat(e))
     
  
   },[])
 
   useEffect(() => {
-    socket.on('62453eb02fe83ee70acd0422', (arg: string) => {
-      getMessages().then((e: any) => setAllChat(e))
+    socket.on('62453eb02fe83ee70acd0422', (arg) => {
+      getMessages().then((e) => setAllChat(e))
  
     });
     
@@ -121,7 +121,7 @@ const MessageDisplay = ({ socket, currentUser }: Iprops) => {
       <MessageRow>Message Bot: This is the start of the chat!</MessageRow>
      
       {allChat ?
-        allChat.messages.slice(0, 100).map((data: MappedMessage, num: number) =>
+        allChat.messages.slice(0, 100).map((data, num) =>
           <MessageRow key={num}>
             <UserInfoContainer>
               

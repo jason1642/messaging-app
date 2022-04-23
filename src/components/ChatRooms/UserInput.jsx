@@ -52,26 +52,26 @@ const NewMessageNotification = styled.div`
   width: 15%;
 
 `
-interface Socket { [key: string]: any };
-interface CurrentUser { username: string, _id: string } 
-interface Iprops {
-  socket: Socket,
-  currentUser: CurrentUser | undefined,
-  roomData: Socket,
-  room_id: Socket
-}
+// interface Socket { [key: string]: any };
+// interface CurrentUser { username: string, _id: string } 
+// interface Iprops {
+//   socket: Socket,
+//   currentUser: CurrentUser | undefined,
+//   roomData: Socket,
+//   room_id: Socket
+// }
 
-const UserInput = ({ room_id, roomData, socket, currentUser}: Iprops ) => {
+const UserInput = ({ room_id, roomData, socket, currentUser} ) => {
   const [userInput, setUserInput] = useState('');
  
 
   useEffect(() => {
   },[currentUser])
-  const handleChange = (e: any) => {
+  const handleChange = (e) => {
     setUserInput(e.target.value)
   }
 
-  const sendMessage = (e: any) => {
+  const sendMessage = (e) => {
     e.preventDefault();
   
     if (socket && userInput.length > 0) {
