@@ -2,9 +2,9 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import axios from 'axios';
 const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
-
+console.log(process.env)
 const api = axios.create({
-  baseUrl: baseUrl
+  baseURL: baseUrl 
 })
 const port = process.env.PORT || 8080;
 
@@ -26,7 +26,7 @@ const runSocketServer = () => {
     // console.log('A user connected');
     // Public chat only, room chats emit via chat-room router
     socket.on('sent message', async (arg) => {
-      await api.post(`${baseUrl}/api/chat_room/message/${arg.room_id}`, arg);
+      await api.post(`/api/chat_room/message/${arg.room_id}`, arg);
     
       
     })

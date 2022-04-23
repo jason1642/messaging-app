@@ -5,7 +5,7 @@ import socketRouter from './Routes/socket/socketRouter.mjs';
 import { runSocketServer } from './socketServer.mjs';
 import connectDatabase from './database.mjs';
 import { userRouter } from './Routes/users.mjs';
-import  authRouter from './Routes/auth.mjs';
+import authRouter from './Routes/auth.mjs';
 import config from 'config';
 import roomRouter from './Routes/chats/room.mjs';
 import messageRouter from './Routes/chats/message.mjs'
@@ -13,8 +13,8 @@ import chatRoomRouter from './Routes/chats/chat-room.mjs';
 
 const app = express();
 const port = process.env.PORT || 5050; 
-
-
+ 
+ 
 
 // var whitelist = [`http://localhost:`, 'https://circle-chat1.herokuapp.com']
 // var corsOptions = {
@@ -30,7 +30,7 @@ const port = process.env.PORT || 5050;
 
 
 
-
+ 
 app.use(express.json());
 app.use(cors());
 app.use(socketRouter);
@@ -50,7 +50,7 @@ if (!config.get('PrivateKey')) {
 
 
 // RUN SOCKET SERVER ./socketServr.mjs - has io instance
-runSocketServer();
+runSocketServer(); 
 // Connect to mongodb database via mongoose
 connectDatabase();
 

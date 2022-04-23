@@ -5,7 +5,7 @@ import axios from 'axios';
 import ChatDisplay from './ChatDisplay';
 import UserInput from './UserInput'
 import io from 'socket.io-client';
-const baseUrl = process.env.Node_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
 const Container = styled.div`
   height: 100vh;

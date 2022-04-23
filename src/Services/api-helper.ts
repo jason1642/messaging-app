@@ -7,9 +7,9 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.he
 // Useful to reduce redundency of typing out entire url for each request, just write path
 // Use axios like normal, but just call api.get instaed of axios.get
 const api = axios.create({
-  baseURL: baseUrl,
+  baseURL: baseUrl, 
 });
-
+ 
 interface RegisterData {
   username: string,
   password: string
