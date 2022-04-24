@@ -36,7 +36,7 @@
   },
   "scripts": {
     "start": "cd client && npm start",
-    "build": "cd client && npm build",
+    "build": "cd client && npm run build",
     "server": "nodemon server.mjs",
     "test": "jest",
     "eject": "react-scripts eject"
