@@ -1,1 +1,1 @@
-node server.mjs
+web: node server.mjs
