@@ -28,8 +28,9 @@ const port = process.env.PORT || 5050;
 // }
 
 
-
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("./build"));
+}
  
 app.use(express.json());
 app.use(cors());
