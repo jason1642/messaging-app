@@ -2,9 +2,6 @@
   "name": "messaging-app",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "16.14.2"
-  },
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
     "@testing-library/jest-dom": "^5.16.3",
@@ -39,9 +36,8 @@
   },
   "scripts": {
     
-
+    "build": "cd client && react-scripts build",
     "start": "node server.mjs",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build",
     "server": "nodemon server.mjs",
     "test": "jest",
     "eject": "react-scripts eject"
