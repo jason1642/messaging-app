@@ -35,7 +35,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node server.mjs cd client && react-scripts start",
+    "start": "node server.mjs cd client && npm start",
     "build": "cd client && react-scripts build",
     "server": "nodemon server.mjs",
     "test": "jest",

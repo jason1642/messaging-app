@@ -6,7 +6,7 @@ console.log(process.env)
 const api = axios.create({
   baseURL: baseUrl 
 })
-const port = process.env.PORT || 8080;
+const port = process.env.SOCKET_PORT || 8080;
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
