@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import AllRoutes from '../src/components/Routes/Container'
+import AllRoutes from './components/Routes/Container'
 import React, { useState, useEffect } from 'react';
 import {
   loginUser,
