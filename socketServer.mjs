@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import axios from 'axios';
-const baseUrl = process.env.NODE_ENV ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:8080';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:8080';
 console.log(process.env)
 const api = axios.create({
   baseURL: baseUrl 

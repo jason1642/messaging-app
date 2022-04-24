@@ -38,6 +38,7 @@
     "start": "nodemon server.mjs",
     "heroku-postbuild": "npm run build",
     "build": "react-scripts build",
+    "front-end": "react-scripts start",
     "server": "nodemon server.mjs",
     "test": "jest",
     "eject": "react-scripts eject"

@@ -47,6 +47,7 @@ const GroupChat = ({ currentUser }) => {
 
 
   useEffect(() => {
+    console.log(`${window.location.hostname}:8080/`)
     const newSocket = io(`${window.location.hostname}:8080/`,
       { transports: ["websocket"] });
     setSocket(newSocket);
