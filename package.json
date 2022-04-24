@@ -35,8 +35,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build NODE_ENV=production",
+    "start": "react-scripts start && nodemon server.mjs",
+    "build": "react-scripts build",
+    "server": "nodemon server.mjs",
     "test": "jest",
     "eject": "react-scripts eject"
   },

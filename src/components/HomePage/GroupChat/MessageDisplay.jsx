@@ -26,7 +26,7 @@ const Container = styled.div`
 `;
 
 const MessageRow = styled.div`
-  width: 90%;
+  width: 90%; 
   /* min-height: 20px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: left;
@@ -62,7 +62,7 @@ const MessageRow = styled.div`
 // }
 const getMessages = async () => {
   
-  const roomData = await axios.get(baseUrl + '/api/room/find-one/62453eb02fe83ee70acd0422' )
+  const roomData = await axios.get(baseUrl + '/api/room/find-one/62453eb02fe83ee70acd0422')
   console.log(roomData.data)
   console.log(baseUrl)
   return roomData.data
@@ -100,7 +100,7 @@ const MessageDisplay = ({ socket, currentUser }) => {
     getMessages().then((e) => {
       console.log(e)
       setAllChat(e)
-    })
+    }).catch(err=>console.log(err))
     
  
   },[])
