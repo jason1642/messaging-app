@@ -36,7 +36,7 @@
   },
   "scripts": {
     "start": "nodemon server.mjs",
-    "heroku-postbuild": "cd ./client && npm run build",
+    "heroku-postbuild": "npm run build",
     "build": "react-scripts build",
     "server": "nodemon server.mjs",
     "test": "jest",
