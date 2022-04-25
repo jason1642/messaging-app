@@ -71,7 +71,7 @@ const UserInput = ({ room_id, roomData, socket, currentUser} ) => {
     setUserInput(e.target.value)
   }
 
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
   
     if (socket && userInput.length > 0) {
@@ -81,7 +81,7 @@ const UserInput = ({ room_id, roomData, socket, currentUser} ) => {
       // Send message to specific socket id?
       // ===========================================
 
-      axios.post(baseUrl + '/api/chat_room/message/' + room_id,
+      await axios.post(baseUrl + '/api/chat_room/message/' + room_id,
       currentUser ? {
         sender: currentUser._id,
         username: currentUser.username,
