@@ -48,10 +48,11 @@ const GroupChat = ({ currentUser }) => {
 
   useEffect(() => {
     console.log(`${window.location.host}`)
-    const newSocket = io(`localhost:8080/`,
-      { transports: ["websocket"] });
+    const newSocket = io(`circle-chat1.herokuapp.com:8080/`,
+      { transports: ["websocket"] }
+    );
     setSocket(newSocket);
- 
+    console.log(newSocket)
     return () => 
       newSocket.close();
     
