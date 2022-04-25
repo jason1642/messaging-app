@@ -14,20 +14,6 @@ import chatRoomRouter from './Routes/chats/chat-room.mjs';
 const app = express(); 
 const port = process.env.PORT || 5050; 
 
-  
-
-// var whitelist = [`http://localhost:`, 'https://circle-chat1.herokuapp.com']
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
-
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("./build"));
 }

@@ -45,7 +45,7 @@ roomRouter.post('/create', async (req, res, next) => {
      
 roomRouter.get('/find-by-name/:name', async (req, res, next) => {
   if (!req.params.name) return res.status(401).send('ID input is empty');
-  const room = await Room.findOne({ name: req.params.name });
+  const room = await Room.findOne({ name: req.params.name }).lean();
   if (!room) {
     return res.status(400).send('Room doesn\t exist');
   } else {
@@ -56,7 +56,7 @@ roomRouter.get('/find-by-name/:name', async (req, res, next) => {
   
 roomRouter.get('/find-one/:id', async (req, res, next) => {
   if (!req.params.id) return res.status(401).send('ID input is empty');
-  const room = await Room.findOne({ _id: req.params.id });
+  const room = await Room.findOne({ _id: req.params.id }).lean();
   if (!room) {
     return res.status(400).send('Room doesn\t exist');
   } else {

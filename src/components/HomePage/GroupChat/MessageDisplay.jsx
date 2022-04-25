@@ -126,7 +126,7 @@ const MessageDisplay = ({ socket, currentUser }) => {
       <MessageRow>Message Bot: This is the start of the chat!</MessageRow>
      
       {allChat ?
-        allChat.messages.slice(0, 100).map((data, num) =>
+        allChat.messages.slice(0, 600).map((data, num) =>
           <MessageRow key={num}>
             <UserInfoContainer>
               
