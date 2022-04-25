@@ -59,10 +59,10 @@ const SubChatRoom = ({currentUser}) => {
 
 
 
-
+  const host = window.location.hostname === 'localhost' ? `localhost:8080` : `circle-chat1.herokuapp.com`
 
   useEffect(() => {
-    const newSocket = io(`${window.location.hostname}:8080/`,
+    const newSocket = io(host,
       { transports: ["websocket"] });
     
     setSocket(newSocket);
