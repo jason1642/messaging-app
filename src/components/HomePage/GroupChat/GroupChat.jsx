@@ -52,7 +52,7 @@ const GroupChat = ({ currentUser }) => {
     console.log(url)
     // var HOST = window.location.origin.replace(/^http/, 'ws')
     const newSocket = io(url,
-      { transports: ["polling"], withCredentials: true }
+      { transports: ["websocket"], withCredentials: true }
       );
     setSocket(newSocket);
     console.log(newSocket)
