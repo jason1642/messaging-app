@@ -1,18 +1,21 @@
 import { createServer } from "http";
 import 'dotenv/config';
 import { Server } from "socket.io";
+import express from 'express'
 import axios from 'axios';
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+const app = express()
+
+const baseUrl = process.env.NODE_ENV !== 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 console.log(process.env.NODE_ENV)
 const api = axios.create({
   baseURL: baseUrl 
 }) 
 const port = process.env.SOCKET_PORT || 8080;
  
-const httpServer = createServer();
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:8080',
+    origin: baseUrl,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
