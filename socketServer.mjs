@@ -12,7 +12,7 @@ const port = process.env.SOCKET_PORT || 8080;
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin: baseUrl,
+    origin: 'http://localhost:8080',
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
