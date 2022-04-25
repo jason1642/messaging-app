@@ -60,9 +60,10 @@ const MessageRow = styled.div`
 //   room_id: string;
 //   created_at: Date;
 // }
+const url = window.location.hostname === 'localhost' ? 'http://localhost:5050' : 'https://circle-chat1.herokuapp.com'
 const getMessages = async () => {
   
-  const roomData = await axios.get(baseUrl + '/api/room/find-one/62453eb02fe83ee70acd0422')
+  const roomData = await axios.get(url + '/api/room/find-one/62453eb02fe83ee70acd0422')
   console.log(roomData.data)
   console.log(baseUrl)
   return roomData.data

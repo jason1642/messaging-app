@@ -48,8 +48,8 @@ const GroupChat = ({ currentUser }) => {
 
   useEffect(() => {
     console.log(`${window.location.host}`)
-    var HOST = window.location.origin.replace(/^http/, 'ws')
-    const newSocket = io(`ws://circle-chat1.herokuapp.com:8080`,
+    // var HOST = window.location.origin.replace(/^http/, 'ws')
+    const newSocket = io(`${window.location.hostname}:8080/`,
       { transports: ["websocket"] });
     setSocket(newSocket);
     console.log(newSocket)
@@ -58,7 +58,9 @@ const GroupChat = ({ currentUser }) => {
     
   }, []);
 
-
+  useEffect(() => {
+    console.log(socket)
+  }, [socket]);
 
 
 

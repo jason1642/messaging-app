@@ -18,9 +18,10 @@ const UserInput = ({ socket, currentUser} ) => {
   }
 
   const sendMessage = (e) => {
+    
     e.preventDefault();
     if (socket && userInput.length > 0) {
-     
+      console.log(socket)
       socket.emit('sent message',
         
       currentUser ? {

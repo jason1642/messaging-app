@@ -66,6 +66,7 @@ const UserInput = ({ room_id, roomData, socket, currentUser} ) => {
  
 
   useEffect(() => {
+    // console.log(socket)
   },[currentUser])
   const handleChange = (e) => {
     setUserInput(e.target.value)
@@ -73,14 +74,14 @@ const UserInput = ({ room_id, roomData, socket, currentUser} ) => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-  
+        // console.log(socket)
+
     if (socket && userInput.length > 0) {
 
       // if current user is undefined, send message as anon username displays as green
       // ===========================================
       // Send message to specific socket id?
       // ===========================================
-
       await axios.post(baseUrl + '/api/chat_room/message/' + room_id,
       currentUser ? {
         sender: currentUser._id,

@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import axios from 'axios';
-const baseUrl = 'https://circle-chat1.herokuapp.com';
+const baseUrl = 'http://localhost:5050';
 console.log(process.env)
 const api = axios.create({
   baseURL: baseUrl 
