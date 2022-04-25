@@ -9,8 +9,8 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.he
 console.log(process.env.NODE_ENV)
 const api = axios.create({
   baseURL: baseUrl 
-}) 
-const port = process.env.SOCKET_PORT || 8080;
+})  
+const port = 8080;
  
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -26,7 +26,7 @@ const runSocketServer = () => {
   httpServer.listen(port, console.log("Socket io on port" + port));
 
   // Home page public chat
-  io.on('connect', (socket) => {
+  io.on('connection', (socket) => {
     // console.log('A user connected');
     // Public chat only, room chats emit via chat-room router
     socket.on('sent message', async (arg) => {
