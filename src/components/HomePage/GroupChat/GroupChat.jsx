@@ -45,14 +45,14 @@ const Header = styled.div`
 
 const GroupChat = ({ currentUser }) => {
   const [socket, setSocket] = useState(null);
-  const url = window.location.hostname === 'localhost' ? 'ws://localhost:8080/' : 'https://circle-chat1.herokuapp.com'
+  const url = window.location.hostname === 'localhost' ? 'ws://localhost:8080/' : 'https://circle-chat1.herokuapp.com:8080'
 
 
   useEffect(() => {
     console.log(url)
     // var HOST = window.location.origin.replace(/^http/, 'ws')
     const newSocket = io(url,
-      { transports: ["polling"] }
+      { transports: ["websocket"] }
       );
     setSocket(newSocket);
     console.log(newSocket)
