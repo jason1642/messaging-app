@@ -45,7 +45,7 @@ const Header = styled.div`
 
 const GroupChat = ({ currentUser }) => {
   const [socket, setSocket] = useState(null);
-  const url = window.location.hostname === 'localhost' ? 'localhost' : 'circle-chat1.herokuapp'
+  const url = window.location.hostname === 'localhost' ? 'localhost' : 'circle-chat1.herokuapp.com'
 
 
   useEffect(() => {
