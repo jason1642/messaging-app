@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {io} from 'socket.io-client';
+import io from 'socket.io-client';
 import UserInput from './UserInput';
 import MessageDisplay  from './MessageDisplay';
 
@@ -48,9 +48,8 @@ const GroupChat = ({ currentUser }) => {
 
   useEffect(() => {
     console.log(`${window.location.host}`)
-    const newSocket = io(`circle-chat1.herokuapp.com:8080/`,
-      { transports: ["websocket"] }
-    );
+    const newSocket = io(`${window.location.hostname}:8080/`,
+      { transports: ["websocket"] });
     setSocket(newSocket);
     console.log(newSocket)
     return () => 

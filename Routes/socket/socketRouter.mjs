@@ -8,7 +8,7 @@ const app = express();
 socketRouter.post('/api/private-message/:room-id', async (req, res) => {
   console.log(req.body, 'this is from the socket router')
   // io.emit('group chat',req.body.message)
-  io.on('connection', (socket) => {
+  io.on('connection', (socket) => { 
     
     // io.to(socketId).emit(/* ... */);
   })
