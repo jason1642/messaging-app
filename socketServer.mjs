@@ -5,7 +5,7 @@ import express from 'express'
 import axios from 'axios';
 const app = express()
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com:8080' : 'http://localhost:5050';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 console.log(process.env.NODE_ENV)
 const api = axios.create({
   baseURL: baseUrl 
