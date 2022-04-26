@@ -1,5 +1,5 @@
 import express from 'express';
-import {io} from '../../socketServer.mjs'
+import {io} from '../../server.mjs'
 import { User } from '../../Models/user.mjs';
 import { Room } from '../../Models/room.mjs';
 import mongoose from 'mongoose';
@@ -32,7 +32,7 @@ chatRoomRouter.post('/message/:room_id', async (req, res, next) => {
   await room.save().then(() => {
     console.log(room._id)
     io.emit(room._id, 'new Message sent to mongodb')
-    
+
   });
 
     return res.status(200).send('success')

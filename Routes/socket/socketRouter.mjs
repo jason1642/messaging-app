@@ -1,5 +1,5 @@
 import express from 'express';
-import {io} from '../../socketServer.mjs'
+import {io} from '../../server.mjs'
 
 const socketRouter = express.Router();
 const app = express();
