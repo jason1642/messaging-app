@@ -65,8 +65,6 @@ const GroupChat = ({ currentUser }) => {
     console.log(socket)
   }, [socket]);
 
-
-
   
   
   return (

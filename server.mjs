@@ -53,21 +53,9 @@ io.on('connect', (socket) => {
   })
 })
 
-
-
-
-
-
-
-
-
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("./build"));
-
-  
 }
- 
 app.use(express.json());
 app.use(cors());
 // app.use(socketRouter); 
@@ -76,22 +64,6 @@ app.use('/user/auth', authRouter);
 app.use('/api/room', roomRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/chat_room', chatRoomRouter);
-
-
-
-
-
-
-
-
-
-
-
- 
-
-// RUN SOCKET SERVER ./socketServr.mjs - has io instance
-// runSocketServer(); 
-
 
 
 
