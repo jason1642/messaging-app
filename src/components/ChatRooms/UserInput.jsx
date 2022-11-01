@@ -1,44 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Container, TextInput, SubmitButton,} from '../styles/user-input'
+
 const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
 
-const Container = styled.form`
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  height: 45px;
-  padding: 5px 0;
-  max-height: 10%; 
-  min-height: 10%;
-  border-radius: 0 0 15px 15px;
-  background-color: white;
-  /* border: 1px solid black; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-`;  
-
-const TextInput = styled.input`
-  width: 60%;
-  font-size: 16px;
-  border-width: 0px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 15px;
-  padding-left: 10px;
-`
-const SubmitButton = styled.input`
-  height: 100%;
-  padding: 5px 20px;
-  margin: 0 10px;
-  font-size: 18px;
-  border-radius: 15px;
-  border-width: 0;
-  color: white;
-  background-color: #4ccf4c;
-  &:hover{
-    cursor: pointer;
-  }
-`
 // const NewMessageNotification = styled.div`
   
 //   background-color: grey;

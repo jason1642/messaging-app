@@ -42,7 +42,7 @@ const UserInput = ({ socket, currentUser} ) => {
   }
 
 
-  return (<Container onSubmit={sendMessage}>
+  return (<Container style={{width: '85%', }} onSubmit={sendMessage}>
 
     <NewMessageNotification >New Message!</NewMessageNotification>
     <TextInput

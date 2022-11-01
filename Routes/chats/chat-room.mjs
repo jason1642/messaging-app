@@ -26,13 +26,9 @@ chatRoomRouter.post('/message/:room_id', async (req, res, next) => {
       message: req.body.message
     }) 
   
-  
-  
-  
   await room.save().then(() => {
     console.log(room._id)
     io.emit(room._id, 'new Message sent to mongodb')
-
   });
 
     return res.status(200).send('success')

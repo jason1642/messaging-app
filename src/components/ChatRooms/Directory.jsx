@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+const baseUrl = 'https://circle-chat1.herokuapp.com'
 
 const Container = styled.div`
   /* height: auto; */
@@ -11,9 +11,9 @@ const Container = styled.div`
   padding: 0px 0 30px 0;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  align-items: center;
   /* flex-wrap: wrap; */
-  background-color: #847e94e6;
+  /* background-color: #847e94e6; */
 
   @media (min-width:1000px){
     
@@ -21,20 +21,17 @@ const Container = styled.div`
 `;  
 
 const Title = styled.h2`
-  font-size: 1.9em;
+  font-size: 2.9em;
   /* width: 100%; */
-  font-weight: 300;
+  font-weight: 400;
 
 `;
 const Main = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  height: auto;
-  max-height: 100vh;
-  justify-content: space-evenly;
-  align-items: flex-start;
-
+  justify-content: flex-start;
+  max-width: 1580px;
   @media (max-width: 480px){
     width: 100%;
     justify-content: space-evenly;
@@ -43,12 +40,12 @@ const Main = styled.div`
     max-height: none;
   }
 
-  @media (min-width:1000px){
+  /* @media (min-width:1000px){
     padding: 40px;
     height: 100vh;
     flex-direction: row;
     align-items: flex-start;
-  }
+  } */
 `;
 
 const NameNest = styled(Link)`

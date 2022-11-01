@@ -31,8 +31,9 @@ const Nav = styled.div`
 const Button = styled(Link)`
   text-decoration: none;
 
-  color: white;
-  font-size: 18px;
+  color: black;
+  font-weight: 300;
+  font-size: 1.6em;
   height: 100%;
   width: 40%;
   display:flex;
@@ -46,6 +47,8 @@ const Button = styled(Link)`
   }
 `
 const Welcome = styled.div`
+  font-size: 1.5em;
+  font-weight: 300;
   @media (max-width: 480px){
     display: none;
   }

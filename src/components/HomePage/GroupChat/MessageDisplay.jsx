@@ -3,7 +3,9 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { format} from 'fecha';
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+// const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+const baseUrl = 'https://circle-chat1.herokuapp.com'
+
 console.log(process.env.NODE_ENV)
 // console.log(process.env['NODE' + '_ENV'])
 console.log(process.env)
@@ -60,7 +62,9 @@ const MessageRow = styled.div`
 //   room_id: string;
 //   created_at: Date;
 // }
-const url = window.location.hostname === 'localhost' ? 'http://localhost:5050' : 'https://circle-chat1.herokuapp.com'
+// const url = window.location.hostname === 'localhost' ? 'http://localhost:5050' : 'https://circle-chat1.herokuapp.com'
+const url =  'https://circle-chat1.herokuapp.com'
+
 const getMessages = async () => {
   
   const roomData = await axios.get(url + '/api/room/find-one/62453eb02fe83ee70acd0422')

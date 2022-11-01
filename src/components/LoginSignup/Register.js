@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 const Title = styled.div`
   font-weight: 400;
-  font-size: 1.8em;
+  font-size: 4.5em;
   color: #faf8f9;
   @media (max-width: 480px){
     font-size: 40px;
@@ -32,7 +32,7 @@ const Form = styled.form`
   align-items: center;
   padding: 25px;
   width: 70%;
-  height: 70%;
+  height: 50%;
   border-radius: 15px;
   @media (max-width: 480px){
     padding: 15px;
@@ -42,10 +42,10 @@ const Form = styled.form`
 
 const UserInput = styled.input`
   margin: 10px 0;
-  padding: 10px;
+  padding: 20px;
   width: 80%;
   border-width: 0;
-
+  font-size: 1.4em;
   border-radius: 15px;
   &:focus-within{
     border-width: 0px;
@@ -58,8 +58,8 @@ const UserInput = styled.input`
 `;
 
 const SubmitButton = styled.input`
-  padding: 12px 20px;
-  font-size: 18px;
+  padding: 13px 20px;
+  font-size: 1.6em;
   text-align: center;
   border: 1px solid black;
   border-radius: 15px;
@@ -100,7 +100,7 @@ const Main = () => {
       e.preventDefault();
       registerUser(userInput,navigate);
     }}>
-      <Title>Register Here!</Title>  
+      <Title>Register Here</Title>  
       <div>
       <UserInput
         name='username'

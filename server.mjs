@@ -11,20 +11,19 @@ import roomRouter from './Routes/chats/room.mjs';
 import messageRouter from './Routes/chats/message.mjs'
 import chatRoomRouter from './Routes/chats/chat-room.mjs';
 import http from 'http'
- import axios from 'axios';
-import { Server } from "socket.io";
+// import axios from 'axios'
+import { Server } from "socket.io"
 
 const app = express(); 
-const port = process.env.PORT || 5050; 
+// const port = process.env.PORT || 5050; 
 const server = http.createServer(app)
+// WHEN TESTING LOCALLY, CHANGE THE === TO !== BECAUSE NODE_ENV IS ALWAYS PRODUCTION EVEN WHEN RUNNING LOCALLY
+// const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+const baseUrl = 'https://circle-chat1.herokuapp.com'
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://circle-chat1.herokuapp.com' : 'http://localhost:5050';
+
 console.log(process.env.NODE_ENV)
 console.log(baseUrl)
-const api = axios.create({
-  baseURL: baseUrl 
-})  
-
 
 export const io = new Server(server, {
   cors: {
@@ -33,24 +32,6 @@ export const io = new Server(server, {
     // allowedHeaders: ["my-custom-header"],
     credentials: true
   }
-})
-server.listen(port, console.log("listening on port " + port));
-io.on('connect', (socket) => {
-  console.log('A user connected');
-  // Public chat only, room chats emit via chat-room router
-  socket.on('sent message', async (arg) => {
-    await api.post(`/api/chat_room/message/${arg.room_id}`, arg);
-  
-    
-  })
-  socket.on('disconnect', (socket) => {
-    console.log('A user has disconnected')
-  })
-
-  // Simple join chat room via route room_id parameter, see room-chat router
-  socket.on('join chatroom', (room) => {
-    socket.join(room)
-  })
 })
 
 if (process.env.NODE_ENV === "production") {

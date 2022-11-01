@@ -1,7 +1,7 @@
 import styled from 'styled-components';
  
 export const Container = styled.form`
-    width: 85%;
+width: 100%;
 
   display: flex;
   justify-content: space-evenly;
@@ -28,8 +28,9 @@ export const TextInput = styled.input`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-width: 0;
   border-radius: 10px;
+  padding: 15px;
   padding-left: 8px;
-  font-size: 16px;
+  font-size: 1.4em;
   @media (max-width: 480px){
     width:60%;
     height: 80%;
@@ -39,10 +40,10 @@ export const TextInput = styled.input`
   }
 `
 export const SubmitButton = styled.input`
-  height: 100%;
-  padding: 5px 20px;
+  /* height: 100%; */
+  padding: 15px 20px;
   margin: 0 10px;
-  font-size: 18px;
+  font-size: 1.6em;
   border-radius: 15px;
   border-width: 0;
   color: white;
